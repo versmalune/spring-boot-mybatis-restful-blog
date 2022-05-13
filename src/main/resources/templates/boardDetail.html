@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/head" :: head></th:block>
+<body>
+
+  <div class="container">
+    <th:block th:replace="fragments/header :: header"></th:block>
+    <h3><a href="/board">BOARD 1</a></h3>
+    <form id="frm" method="post">
+      <table class="board_detail">
+        <tbody>
+        <tr>
+          <th scope="row">글 번호</th>
+          <td th:text="${board.getId}"></td>
+          <th scope="row">조회수</th>
+          <td th:text="${board.viewcnt}"></td>
+        </tr>
+        <tr>
+          <th scope="row">제목</th>
+          <td colspan="3" id="title" name="title" class="title" th:text="${board.title}"/></td>
+        </tr>
+        <tr>
+          <td colspan="4" class="view_text" th:utext="${board.content}">
+            <!--
+            <textarea title="content" id="content" name="content" th:utext="${board.content}"></textarea> <-->
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <input type="hidden" name="id" th:value="${board.getId}">
+    </form>
+
+    <div class="container">
+      <a th:each="list : ${board.fileList}" th:text="|${list.originalFileName}(${list.fileSize} kb)|"></a>
+    </div>
+
+    <div class="btn-detail">
+        <button class="btn-com2" id="list">LIST</button>
+        <!--
+        <button class="btn btn-primary" id="edit">EDIT</button>
+        -->
+        <button class="btn-com2" id="delete">DELETE</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <form name="commentInsertForm">
+      <div class="comment-group">
+        <input type="hidden" name="bid" th:value="${board.getId}"/>
+        <input type="text" class="comment-insert" id="comcontent" name="comcontent" placeholder="COMMENT">
+        <button class="btn-com" type="button" name="commentInsertBtn">SUBMIT</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="container">
+    <div class="commentList"></div>
+  </div>
+</div>
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#list").click(function(){
+        location.href = "/board";
+      });
+
+      $("#edit").on("click", function(){
+        var frm = $("#frm")[0];
+        frm.action = "updateBoard";
+        frm.submit();
+      });
+
+      $("#delete").on("click", function(){
+        var frm = $("#frm")[0];
+        frm.action = "deleteBoard";
+        frm.submit();
+      });
+    })
+
+    var id = [[${board.id}]];
+
+    $('[name=commentInsertBtn]').click(function(){
+      var insertData = $('[name=commentInsertForm]').serialize();
+      commentInsert(insertData);
+    });
+
+    function commentList(){
+      $.ajax({
+        url : '/comment/list',
+        type : 'get',
+        data : {'id':id},
+        success : function(data){
+          var a ='';
+          $.each(data, function(key, value){
+            a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+            a += '<div class="commentContent'+value.id+'"> <p> '+ value.comcontent;
+            a += '<button class="btn-com2" style="float:right" onclick="commentDelete('+value.id+');"> DELETE </button>';
+            a += '<button class="btn-com2" style="float:right" onclick="commentUpdate('+value.id+',\''+value.comcontent+'\');"> EDIT </button> </p> </div>';
+            a += '</div></div>';
+          });
+          $(".commentList").html(a);
+        }
+      });
+    }
+
+    function commentInsert(insertData){
+      $.ajax({
+        url : '/comment/insert',
+        type : 'post',
+        data : insertData,
+        success : function(data){
+          if(data == 1) {
+            commentList();
+            $('[name=comcontent]').val('');
+          }
+        }
+      });
+    }
+
+    function commentUpdate(id, comcontent){
+      var a ='';
+      a += '<div class="comment-group">';
+      a += '<input type="text" class="comment-insert" name="content_'+id+'" value="'+comcontent+'"/>';
+      a += '<button class="btn-com" type="button" onclick="commentUpdateProc('+id+');">EDIT</button>';
+      a += '</div>';
+      $('.commentContent'+id).html(a);
+
+    }
+
+    function commentUpdateProc(id){
+      var updateContent = $('[name=content_'+id+']').val();
+      $.ajax({
+        url : '/comment/update',
+        type : 'post',
+        data : {'comcontent' : updateContent, 'id' : id},
+        success : function(data){
+          if(data == 1) commentList(bid);
+        }
+      });
+    }
+
+    function commentDelete(id){
+      $.ajax({
+        url : '/comment/delete/'+id,
+        type : 'post',
+        success : function(data){
+          if(data == 1) commentList(id);
+        }
+      });
+    }
+
+    $(document).ready(function(){
+      commentList();
+    });
+  </script>
+
+</div>
+</body>
+</html>

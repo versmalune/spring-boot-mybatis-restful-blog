@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/head" :: head></th:block>
+<body>
+    <div class="container">
+        <th:block th:replace="fragments/header :: header"></th:block>
+    </div>
+<!--
+ID : <span sec:authentication="name"></span> <br>
+소유 권한 : <span sec:authentication="authorities"></span> <br>
+<a href="/board" class="btn">BOARD</a>
+-->
+</body>
+</html>

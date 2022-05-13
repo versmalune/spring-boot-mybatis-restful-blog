@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<th:block th:replace="fragments/head" :: head></th:block>
+<body>
+<div class="container">
+  <th:block th:replace="fragments/header :: header"></th:block>
+  <h3><a href="/board">BOARD 1</a></h3>
+  <table class="board_list">
+    <thead>
+    <tr>
+      <th scope="col">글번호</th>
+      <th scope="col" class="title">제목</th>
+      <th scope="col">조회수</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
+      <td th:text="${list.getId}"></td>
+      <td class="title">
+        <a href="board/openBoardDetail?id=" th:attrappend="href=${list.getId}" th:text="${(list.title)}"></a>
+      </td>
+      <td th:text="${list.viewcnt}"></td>
+    </tr>
+    <tr th:unless="${#lists.size(list)} > 0">
+      <td colspan="4">조회 결과가 없습니다.</td>
+    </tr>
+    </tbody>
+  </table>
+  <a href="board/openBoardWrite" class="btn-write">글 쓰기</a>
+</div>
+</body>
+</html>

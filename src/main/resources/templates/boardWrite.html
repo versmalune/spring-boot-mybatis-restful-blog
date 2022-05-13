@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/head" :: head></th:block>
+<body>
+
+  <div class="container">
+    <th:block th:replace="fragments/header :: header"></th:block>
+    <h3>게시판 글 등록</h3>
+    <form id="boardform" name="boardform" method="post" action="/board/insertBoard" enctype="multipart/form-data">
+    <table class="board_write">
+      <tr>
+        <td>제목</td>
+        <td><input type="text" id="title" name="title" placeholder="TITLE"></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <textarea id="summernote" name="content"></textarea>
+        </td>
+      </tr>
+    </table>
+      <input type="file" class="files" id="files" name="files" multiple="multiple">
+      <div class="btn-detail">
+        <input type="submit" id="submit" value="SAVE" class="btn-save">
+      </div>
+    </form>
+  </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#summernote').summernote({
+      placeholder: "CONTENTS",
+      tabsize: 2,
+      height: 200
+    });
+  });
+</script>
+</body>
+</html>
