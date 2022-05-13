@@ -3,13 +3,14 @@ package com.example.demo2.controller;
 import com.example.demo2.model.dto.BoardDto;
 import com.example.demo2.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/board")
 public class BoardController {
     @Autowired
@@ -22,17 +23,19 @@ public class BoardController {
         mv.addObject("list", list);
         return mv;
     }
-    @GetMapping("/openBoardWrite")
+    @GetMapping("/boardWrite")
     public String boardWrite(){
         return "/boardWrite";
     }
     @PostMapping("/insertBoard")
+    @ResponseBody
     public String insertBoard(@ModelAttribute BoardDto board, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
         boardService.insertBoard(board, multipartHttpServletRequest);
         return "redirect:/board";
     }
     @GetMapping("/{id}")
-    public ModelAndView openBoardDetail(@PathVariable("id") int id){
+    @ResponseBody
+    public ModelAndView openBoardDetail(@PathVariable("id") Long id){
         ModelAndView mv = new ModelAndView("boardDetail");
         BoardDto board = boardService.selectBoardDetail(id);
         mv.addObject("board", board);
@@ -44,7 +47,7 @@ public class BoardController {
         return "redirect:/board";
     }
     @DeleteMapping("/{id}")
-    public String deleteBoard(@PathVariable("id") int id){
+    public String deleteBoard(@PathVariable("id") Long id){
         boardService.deleteBoard(id);
         return "redirect:/board";
     }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Mapper
-@Repository("com.example.demo1.board.mapper.CommentMapper")
+@Repository("com.example.demo2.mapper.CommentMapper")
 public interface CommentMapper {
     List<CommentDto> commentList(Long id);
     void commentInsert(CommentDto comment);

@@ -10,10 +10,10 @@ import java.util.List;
 public interface BoardMapper {
     List<BoardDto> selectBoardList();
     void insertBoard(BoardDto board);
-    void updateHitCount(int id);
-    BoardDto selectBoardDetail(int id);
+    void updateHitCount(Long id);
+    BoardDto selectBoardDetail(Long id);
     void updateBoard(BoardDto board);
-    void deleteBoard(int id);
+    void deleteBoard(Long id);
     void insertBoardFileList(List<BoardFileDto> list);
-    List<BoardFileDto> selectBoardFileList(int id);
+    List<BoardFileDto> selectBoardFileList(Long id);
 }

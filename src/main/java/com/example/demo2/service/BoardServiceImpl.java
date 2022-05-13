@@ -31,7 +31,8 @@ public class BoardServiceImpl implements BoardService {
         }
     }
     @Override
-    public BoardDto selectBoardDetail(int id){
+    public BoardDto selectBoardDetail(Long id){
+        System.out.println();
         BoardDto board = boardMapper.selectBoardDetail(id);
         List<BoardFileDto> fileList = boardMapper.selectBoardFileList(id);
         System.out.println(fileList);
@@ -45,7 +46,7 @@ public class BoardServiceImpl implements BoardService {
         boardMapper.updateBoard(board);
     }
     @Override
-    public void deleteBoard(int id){
+    public void deleteBoard(Long id){
         boardMapper.deleteBoard(id);
     }
 }

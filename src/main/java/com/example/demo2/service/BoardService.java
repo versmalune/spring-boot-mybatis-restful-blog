@@ -9,7 +9,7 @@ import java.util.List;
 public interface BoardService {
     List<BoardDto> selectBoardList();
     void insertBoard(BoardDto board, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception;
-    BoardDto selectBoardDetail(int id);
+    BoardDto selectBoardDetail(Long id);
     void updateBoard(BoardDto board);
-    void deleteBoard(int id);
+    void deleteBoard(Long id);
 }

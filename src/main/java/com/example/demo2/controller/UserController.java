@@ -1,16 +1,16 @@
 package com.example.demo2.controller;
 
-
 import com.example.demo2.model.UserVO;
 import com.example.demo2.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
