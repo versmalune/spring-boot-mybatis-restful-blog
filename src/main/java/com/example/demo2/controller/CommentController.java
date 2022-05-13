@@ -16,29 +16,29 @@ public class CommentController {
 
     @GetMapping("/list")
     @ResponseBody
-    public List<CommentDto> commentList(@RequestParam int id){
+    public List<CommentDto> commentList(@RequestParam Long id){
         return commentService.commentListService(id);
     }
     @PostMapping ("/insert")
     @ResponseBody
-    public void commentInsert(@RequestParam Long bid, @RequestParam String comcontent){
+    public void commentInsert(@RequestParam Long bid, @RequestParam String comContent){
         CommentDto comment = new CommentDto();
         comment.setBid(bid);
-        comment.setComContent(comcontent);
-        comment.setComWriter("testuser");
-        return commentService.insertCommentService(comment);
+        comment.setComContent(comContent);
+        comment.setComWriter("TESTUSER");
+        commentService.insertCommentService(comment);
     }
     @PutMapping("/{id}")
     @ResponseBody
-    private int commentUpdate(@RequestParam int id, @RequestParam String comcontent){
+    public void commentUpdate(@RequestParam Long id, @RequestParam String comContent){
         CommentDto comment = new CommentDto();
         comment.setId(id);
-        comment.setComcontent(comcontent);
-        return commentService.updateCommentService(comment);
+        comment.setComContent(comContent);
+        commentService.updateCommentService(comment);
     }
     @DeleteMapping("/{id}")
     @ResponseBody
-    private int commentDelete(@PathVariable int id){
-        return commentService.deleteCommentService(id);
+    public void commentDelete(@PathVariable Long id){
+        commentService.deleteCommentService(id);
     }
 }

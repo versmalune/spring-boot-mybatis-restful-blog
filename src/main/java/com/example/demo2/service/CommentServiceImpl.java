@@ -17,14 +17,14 @@ public class CommentServiceImpl implements CommentService {
     }
     @Override
     public void insertCommentService(CommentDto comment){
-        return commentMapper.commentInsert(comment);
+        commentMapper.commentInsert(comment);
     }
     @Override
     public void updateCommentService(CommentDto comment){
-        return commentMapper.commentUpdate(comment);
+        commentMapper.commentUpdate(comment);
     }
     @Override
     public void deleteCommentService(Long id){
-        return commentMapper.commentDelete(id);
+        commentMapper.commentDelete(id);
     }
 }
