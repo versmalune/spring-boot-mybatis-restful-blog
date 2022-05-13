@@ -1,6 +1,6 @@
 package com.example.demo2.common;
 
-import com.example.demo2.board.dto.BoardFileDto;
+import com.example.demo2.model.dto.BoardFileDto;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Component
 public class FileUtils {
-    public List<BoardFileDto> parseFileInfo(int bid, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+    public List<BoardFileDto> parseFileInfo(Long bid, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         if (ObjectUtils.isEmpty(multipartHttpServletRequest)) {
             return null;
         }

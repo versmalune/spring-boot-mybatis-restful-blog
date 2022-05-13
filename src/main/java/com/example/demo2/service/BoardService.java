@@ -1,6 +1,6 @@
 package com.example.demo2.service;
 
-import com.example.demo1.board.dto.BoardDto;
+import com.example.demo2.model.dto.BoardDto;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;

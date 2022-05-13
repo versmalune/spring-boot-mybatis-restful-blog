@@ -1,14 +1,13 @@
 package com.example.demo2.controller;
 
-import com.example.demo1.board.dto.CommentDto;
-import com.example.demo1.board.service.CommentService;
+import com.example.demo2.model.dto.CommentDto;
+import com.example.demo2.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/comment")
 public class CommentController {
 
@@ -22,14 +21,14 @@ public class CommentController {
     }
     @PostMapping ("/insert")
     @ResponseBody
-    public int commentInsert(@RequestParam int bid, @RequestParam String comcontent){
+    public void commentInsert(@RequestParam Long bid, @RequestParam String comcontent){
         CommentDto comment = new CommentDto();
         comment.setBid(bid);
-        comment.setComcontent(comcontent);
-        comment.setComwriter("testuser");
+        comment.setComContent(comcontent);
+        comment.setComWriter("testuser");
         return commentService.insertCommentService(comment);
     }
-    @PostMapping("/update")
+    @PutMapping("/{id}")
     @ResponseBody
     private int commentUpdate(@RequestParam int id, @RequestParam String comcontent){
         CommentDto comment = new CommentDto();
@@ -37,7 +36,7 @@ public class CommentController {
         comment.setComcontent(comcontent);
         return commentService.updateCommentService(comment);
     }
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseBody
     private int commentDelete(@PathVariable int id){
         return commentService.deleteCommentService(id);

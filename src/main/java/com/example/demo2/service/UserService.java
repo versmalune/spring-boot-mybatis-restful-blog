@@ -1,7 +1,8 @@
 package com.example.demo2.service;
 
-import com.example.demo1.user.mapper.UserMapper;
-import com.example.demo1.user.model.UserVO;
+
+import com.example.demo2.mapper.UserMapper;
+import com.example.demo2.model.UserVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

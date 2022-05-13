@@ -1,6 +1,6 @@
 package com.example.demo2.config;
 
-import com.example.demo2.user.service.UserService;
+import com.example.demo2.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,8 +26,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/auth")
-                .defaultSuccessUrl("/user_access")
-                .failureUrl("/access_denied")
+                .defaultSuccessUrl("/userAccess")
+                .failureUrl("/accessDenied")
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

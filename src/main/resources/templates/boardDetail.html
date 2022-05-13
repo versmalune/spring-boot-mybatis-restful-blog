@@ -14,7 +14,7 @@
           <th scope="row">글 번호</th>
           <td th:text="${board.getId}"></td>
           <th scope="row">조회수</th>
-          <td th:text="${board.viewcnt}"></td>
+          <td th:text="${board.viewCnt}"></td>
         </tr>
         <tr>
           <th scope="row">제목</th>
@@ -29,6 +29,7 @@
         </tbody>
       </table>
       <input type="hidden" name="id" th:value="${board.getId}">
+      <input type="hidden" name="method" name="_method" />
     </form>
 
     <div class="container">
@@ -69,14 +70,16 @@
       });
 
       $("#edit").on("click", function(){
+        $("input:hidden[name=_method]").val("put");
         var frm = $("#frm")[0];
-        frm.action = "updateBoard";
+        frm.action = "/board"+$("input:hidden[name=id]").val();
         frm.submit();
       });
 
       $("#delete").on("click", function(){
+        $("input:hidden[name=_method]").val("delete");
         var frm = $("#frm")[0];
-        frm.action = "deleteBoard";
+        frm.action = "/board"+$("input:hidden[name=id]").val();
         frm.submit();
       });
     })

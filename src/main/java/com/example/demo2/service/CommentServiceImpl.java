@@ -1,7 +1,7 @@
 package com.example.demo2.service;
 
-import com.example.demo1.board.dto.CommentDto;
-import com.example.demo1.board.mapper.CommentMapper;
+import com.example.demo2.mapper.CommentMapper;
+import com.example.demo2.model.dto.CommentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,19 +12,19 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentMapper commentMapper;
     @Override
-    public List<CommentDto> commentListService(int bid) {
+    public List<CommentDto> commentListService(Long bid) {
         return commentMapper.commentList(bid);
     }
     @Override
-    public int insertCommentService(CommentDto comment){
+    public void insertCommentService(CommentDto comment){
         return commentMapper.commentInsert(comment);
     }
     @Override
-    public int updateCommentService(CommentDto comment){
+    public void updateCommentService(CommentDto comment){
         return commentMapper.commentUpdate(comment);
     }
     @Override
-    public int deleteCommentService(int id){
+    public void deleteCommentService(Long id){
         return commentMapper.commentDelete(id);
     }
 }

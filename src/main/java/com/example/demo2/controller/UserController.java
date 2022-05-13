@@ -5,12 +5,12 @@ import com.example.demo2.model.UserVO;
 import com.example.demo2.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
@@ -23,7 +23,7 @@ public class UserController {
     public String login(){
         return "userLogin";
     }
-    @GetMapping("/access_denied")
+    @GetMapping("/accessDenied")
     public String denied(){
         return "userLogin";
     }
@@ -36,7 +36,7 @@ public class UserController {
         userService.joinUser(userVO);
         return "redirect:/login";
     }
-    @GetMapping("/user_access")
+    @GetMapping("/userAccess")
     public String userAccess(Model model, Authentication authentication) {
         UserVO userVO = (UserVO) authentication.getPrincipal();
         // model.addAttribute("info", userVO.getUsername() +"의 "+ userVO.getUserAuth()+ "님");      //유저 아이디

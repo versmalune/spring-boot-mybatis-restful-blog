@@ -1,9 +1,9 @@
 package com.example.demo2.service;
 
-import com.example.demo1.board.common.FileUtils;
-import com.example.demo1.board.dto.BoardDto;
-import com.example.demo1.board.dto.BoardFileDto;
-import com.example.demo1.board.mapper.BoardMapper;
+import com.example.demo2.common.FileUtils;
+import com.example.demo2.mapper.BoardMapper;
+import com.example.demo2.model.dto.BoardDto;
+import com.example.demo2.model.dto.BoardFileDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
