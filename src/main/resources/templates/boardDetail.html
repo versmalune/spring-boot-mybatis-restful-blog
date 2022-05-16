@@ -17,6 +17,12 @@
           <td th:text="${board.viewCnt}"></td>
         </tr>
         <tr>
+          <th scope="row">작성자</th>
+          <td th:text="${board.writer}"></td>
+          <th scope="row">작성일시</th>
+          <td th:text="${#temporals.format(board.createdDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        </tr>
+        <tr>
           <th scope="row">제목</th>
           <td colspan="3" id="title" name="title" class="title" th:text="${board.title}"/></td>
         </tr>

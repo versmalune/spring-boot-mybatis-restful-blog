@@ -3,21 +3,18 @@
 
 <mapper namespace="com.example.demo2.mapper.BoardMapper">
     <select id="selectBoardList" resultType="com.example.demo2.model.dto.BoardDto">
-			SELECT id, title, view_cnt
+			SELECT id, title, view_cnt, created_datetime
 		    FROM board
 		    ORDER BY id DESC
     </select>
     <select id="selectBoardFileList" parameterType="Long" resultType="com.example.demo2.model.dto.BoardFileDto">
-        SELECT id, bid, original_file_name,
-            FORMAT(ROUND(file_size / 1024), 0) AS file_size
-        FROM
-            files
-        WHERE
-            bid = #{bid}
+        SELECT id, bid, original_file_name, FORMAT(ROUND(file_size / 1024), 0) AS file_size
+        FROM files
+        WHERE bid = #{bid}
     </select>
     <insert id="insertBoard" parameterType="com.example.demo2.model.dto.BoardDto" useGeneratedKeys="true" keyProperty="id">
-		INSERT INTO board (title, content)
-        VALUES (#{title}, #{content})
+		INSERT INTO board (title, content, created_datetime, writer)
+        VALUES (#{title}, #{content}, NOW(), 'testuser')
 	</insert>
     <insert id="insertBoardFileList" parameterType="com.example.demo2.model.dto.BoardFileDto">
 			INSERT INTO files
@@ -41,7 +38,7 @@
     </update>
 
     <select id="selectBoardDetail" parameterType="Long" resultType="com.example.demo2.model.dto.BoardDto">
-        SELECT id, title, content, view_cnt
+        SELECT id, title, content, view_cnt, writer, created_datetime
         FROM board
         WHERE id = #{id}
     </select>
