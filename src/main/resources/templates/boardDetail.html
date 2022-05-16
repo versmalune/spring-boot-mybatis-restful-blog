@@ -29,7 +29,7 @@
         </tbody>
       </table>
       <input type="hidden" name="id" th:value="${board.getId}">
-      <input type="hidden" name="method" name="_method" />
+      <input type="hidden" id="method" name="_method" />
     </form>
 
     <div class="container">
@@ -49,7 +49,7 @@
     <form name="commentInsertForm">
       <div class="comment-group">
         <input type="hidden" name="bid" th:value="${board.getId}"/>
-        <input type="text" class="comment-insert" id="comcontent" name="comcontent" placeholder="COMMENT">
+        <input type="text" class="comment-insert" id="comContent" name="comContent" placeholder="COMMENT">
         <button class="btn-com" type="button" name="commentInsertBtn">SUBMIT</button>
       </div>
     </form>
@@ -88,6 +88,7 @@
 
     $('[name=commentInsertBtn]').click(function(){
       var insertData = $('[name=commentInsertForm]').serialize();
+      console.log(insertData);
       commentInsert(insertData);
     });
 
@@ -95,15 +96,15 @@
       $.ajax({
         url : '/comment/list',
         type : 'get',
-        data : {'id':id},
+        data : {'bid':id},
         success : function(data){
           var a ='';
           $.each(data, function(key, value){
             a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-            a += '<div class="commentContent'+value.id+'"> <p> '+ value.comcontent;
+            a += '<div class="commentContent'+value.id+'"> <p> '+ value.comContent;
             a += '<button class="btn-com2" style="float:right" onclick="commentDelete('+value.id+');"> DELETE </button>';
-            a += '<button class="btn-com2" style="float:right" onclick="commentUpdate('+value.id+',\''+value.comcontent+'\');"> EDIT </button> </p> </div>';
-            a += '</div></div>';
+            a += '<button class="btn-com2" style="float:right" onclick="commentUpdate('+value.id+',\''+value.comContent+'\');"> EDIT </button> </p> </div>';
+            a += '</div></div>'
           });
           $(".commentList").html(a);
         }
@@ -111,47 +112,45 @@
     }
 
     function commentInsert(insertData){
+      console.log(insertData);
       $.ajax({
-        url : '/comment/insert',
+        url : '/comment/new',
         type : 'post',
         data : insertData,
-        success : function(data){
-          if(data == 1) {
+        success : function(){
             commentList();
-            $('[name=comcontent]').val('');
-          }
+            $('[name=comContent]').val('');
         }
       });
     }
 
-    function commentUpdate(id, comcontent){
+    function commentUpdate(id, comContent){
       var a ='';
       a += '<div class="comment-group">';
-      a += '<input type="text" class="comment-insert" name="content_'+id+'" value="'+comcontent+'"/>';
+      a += '<input type="text" class="comment-insert" name="content_'+id+'" value="'+comContent+'"/>';
       a += '<button class="btn-com" type="button" onclick="commentUpdateProc('+id+');">EDIT</button>';
       a += '</div>';
       $('.commentContent'+id).html(a);
-
     }
 
     function commentUpdateProc(id){
       var updateContent = $('[name=content_'+id+']').val();
       $.ajax({
-        url : '/comment/update',
-        type : 'post',
-        data : {'comcontent' : updateContent, 'id' : id},
-        success : function(data){
-          if(data == 1) commentList(bid);
+        url : '/comment/'+id,
+        type : 'put',
+        data : {'comContent' : updateContent, 'id' : id},
+        success : function(){
+          commentList();
         }
       });
     }
 
     function commentDelete(id){
       $.ajax({
-        url : '/comment/delete/'+id,
-        type : 'post',
-        success : function(data){
-          if(data == 1) commentList(id);
+        url : '/comment/'+id,
+        type : 'delete',
+        success : function(){
+          commentList();
         }
       });
     }

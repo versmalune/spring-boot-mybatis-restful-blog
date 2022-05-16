@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 @Repository("com.example.demo2.mapper.CommentMapper")
 public interface CommentMapper {
-    List<CommentDto> commentList(Long id);
+    List<CommentDto> commentList(Long bid);
     void commentInsert(CommentDto comment);
     void commentUpdate(CommentDto comment);
     void commentDelete(Long id);

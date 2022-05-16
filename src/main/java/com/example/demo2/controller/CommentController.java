@@ -2,11 +2,13 @@ package com.example.demo2.controller;
 
 import com.example.demo2.model.dto.CommentDto;
 import com.example.demo2.service.CommentService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/comment")
 public class CommentController {
@@ -16,12 +18,16 @@ public class CommentController {
 
     @GetMapping("/list")
     @ResponseBody
-    public List<CommentDto> commentList(@RequestParam Long id){
-        return commentService.commentListService(id);
+    public List<CommentDto> commentList(@RequestParam Long bid){
+        log.info("==========in list=========");
+
+        System.out.println("commentList: "+bid);
+        return commentService.commentListService(bid);
     }
-    @PostMapping ("/insert")
+    @PostMapping ("/new")
     @ResponseBody
     public void commentInsert(@RequestParam Long bid, @RequestParam String comContent){
+        log.info("==========in new=========");
         CommentDto comment = new CommentDto();
         comment.setBid(bid);
         comment.setComContent(comContent);

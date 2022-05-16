@@ -32,7 +32,7 @@ public class BoardServiceImpl implements BoardService {
     }
     @Override
     public BoardDto selectBoardDetail(Long id){
-        System.out.println();
+        System.out.println(id);
         BoardDto board = boardMapper.selectBoardDetail(id);
         List<BoardFileDto> fileList = boardMapper.selectBoardFileList(id);
         System.out.println(fileList);

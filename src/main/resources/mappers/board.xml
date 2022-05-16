@@ -7,7 +7,7 @@
 		    FROM board
 		    ORDER BY id DESC
     </select>
-    <select id="selectBoardFileList" parameterType="int" resultType="com.example.demo2.model.dto.BoardFileDto">
+    <select id="selectBoardFileList" parameterType="Long" resultType="com.example.demo2.model.dto.BoardFileDto">
         SELECT id, bid, original_file_name,
             FORMAT(ROUND(file_size / 1024), 0) AS file_size
         FROM
@@ -34,13 +34,13 @@
         </foreach>
     </insert>
 
-    <update id="updateHitCount" parameterType="int">
+    <update id="updateHitCount" parameterType="Long">
         UPDATE board
         SET view_cnt = view_cnt+1
         WHERE id = #{id}
     </update>
 
-    <select id="selectBoardDetail" parameterType="int" resultType="com.example.demo2.model.dto.BoardDto">
+    <select id="selectBoardDetail" parameterType="Long" resultType="com.example.demo2.model.dto.BoardDto">
         SELECT id, title, content, view_cnt
         FROM board
         WHERE id = #{id}
@@ -52,7 +52,7 @@
         WHERE id = #{id}
     </update>
 
-    <delete id="deleteBoard" parameterType="int">
+    <delete id="deleteBoard" parameterType="Long">
         DELETE FROM board
         WHERE id = #{id}
     </delete>
