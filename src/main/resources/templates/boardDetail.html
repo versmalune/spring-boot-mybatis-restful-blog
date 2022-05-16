@@ -41,7 +41,7 @@
         <!--
         <button class="btn btn-primary" id="edit">EDIT</button>
         -->
-        <button class="btn-com2" id="delete">DELETE</button>
+        <button class="btn-com2" id="delete" name="delete">DELETE</button>
     </div>
   </div>
 
@@ -64,6 +64,9 @@
 
 
   <script type="text/javascript">
+
+    var id = [[${board.id}]];
+
     $(document).ready(function(){
       $("#list").click(function(){
         location.href = "/board";
@@ -72,15 +75,17 @@
       $("#edit").on("click", function(){
         $("input:hidden[name=_method]").val("put");
         var frm = $("#frm")[0];
-        frm.action = "/board"+$("input:hidden[name=id]").val();
+        frm.action = "/board/"+$("input:hidden[name=id]").val();
         frm.submit();
       });
 
-      $("#delete").on("click", function(){
+      $("#delete").click(function(){
         $("input:hidden[name=_method]").val("delete");
         var frm = $("#frm")[0];
-        frm.action = "/board"+$("input:hidden[name=id]").val();
+        frm.action = "/board/"+$("input:hidden[name=id]").val();
+        console.log("=====here1=====")
         frm.submit();
+        console.log("=====here2=====")
       });
     })
 
@@ -88,7 +93,6 @@
 
     $('[name=commentInsertBtn]').click(function(){
       var insertData = $('[name=commentInsertForm]').serialize();
-      console.log(insertData);
       commentInsert(insertData);
     });
 
@@ -112,7 +116,6 @@
     }
 
     function commentInsert(insertData){
-      console.log(insertData);
       $.ajax({
         url : '/comment/new',
         type : 'post',
