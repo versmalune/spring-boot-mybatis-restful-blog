@@ -25,11 +25,11 @@ public class BoardController {
         mv.addObject("list", list);
         return mv;
     }
-    @GetMapping("/write")
+    @GetMapping("/new")
     public String boardWrite(){
         return "/boardWrite";
     }
-    @PostMapping("/new")
+    @PostMapping("/")
     public String insertBoard(@ModelAttribute BoardDto board, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
         boardService.insertBoard(board, multipartHttpServletRequest);
         return "redirect:/board";
