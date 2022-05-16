@@ -2,6 +2,7 @@ package com.example.demo2.service;
 
 import com.example.demo2.common.FileUtils;
 import com.example.demo2.mapper.BoardMapper;
+import com.example.demo2.model.Account;
 import com.example.demo2.model.dto.BoardDto;
 import com.example.demo2.model.dto.BoardFileDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,9 @@ public class BoardServiceImpl implements BoardService {
         return boardMapper.selectBoardList();
     }
     @Override
-    public void insertBoard(BoardDto board, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
-        board.setContent(board.getContent().replaceAll("<p>", "").replaceAll("</p>", "")); //
+    public void insertBoard(BoardDto board, Account account, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
+        board.setContent(board.getContent());
+        board.setWriter(account.getUsername());
         boardMapper.insertBoard(board);
         List<BoardFileDto> list = fileUtils.parseFileInfo(board.getId(), multipartHttpServletRequest);
         if (CollectionUtils.isEmpty(list) == false) {

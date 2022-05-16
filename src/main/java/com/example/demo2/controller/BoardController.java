@@ -1,5 +1,7 @@
 package com.example.demo2.controller;
 
+import com.example.demo2.common.CurrentUser;
+import com.example.demo2.model.Account;
 import com.example.demo2.model.dto.BoardDto;
 import com.example.demo2.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
@@ -30,8 +32,9 @@ public class BoardController {
         return "/boardWrite";
     }
     @PostMapping("/")
-    public String insertBoard(@ModelAttribute BoardDto board, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
-        boardService.insertBoard(board, multipartHttpServletRequest);
+    public String insertBoard(@ModelAttribute BoardDto board,
+                              @CurrentUser Account account, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
+        boardService.insertBoard(board, account, multipartHttpServletRequest);
         return "redirect:/board";
     }
     @GetMapping("/{id}")

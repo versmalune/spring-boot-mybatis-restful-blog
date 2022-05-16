@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Data
-public class UserVO implements UserDetails {
+public class Account implements UserDetails {
     private Long id;
     private String userName;
     private String userPw;

@@ -42,7 +42,7 @@ caption {display:none; width:0; height:0; margin-top:-1px; overflow:hidden; visi
 .board_detail tbody td {padding: 0px 50px 0px 50px; border-bottom: 1px solid #ccc; vertical-align: middle; text-align: center}
 .board_detail tbody td.view_text {text-align: left; padding: 20px; font-size: 150%;}
 .board_detail tbody textarea {width:100%; min-height:170px}
-.board_detail td.title {text-align: center;}
+.board_detail td.title {text-align: left; padding-right:130px; padding-left:20px;}
 
 .board_write tbody {width: 80%; border-top:2px solid #252525; border-bottom:1px solid #ccc; border-collapse:collapse;}
 .board_write tbody td {padding: 0px 50px 0px 50px; border-bottom: 1px solid #ccc; vertical-align: middle; text-align: center}

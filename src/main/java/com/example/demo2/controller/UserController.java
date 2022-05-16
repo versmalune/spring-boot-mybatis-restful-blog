@@ -1,6 +1,6 @@
 package com.example.demo2.controller;
 
-import com.example.demo2.model.UserVO;
+import com.example.demo2.model.Account;
 import com.example.demo2.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -32,13 +32,13 @@ public class UserController {
         return "userSignup";
     }
     @PostMapping("/signUp")
-    public String signUp(UserVO userVO){
-        userService.joinUser(userVO);
+    public String signUp(Account account){
+        userService.joinUser(account);
         return "redirect:/login";
     }
     @GetMapping("/userAccess")
     public String userAccess(Model model, Authentication authentication) {
-        UserVO userVO = (UserVO) authentication.getPrincipal();
+        // Account account = (Account) authentication.getPrincipal();
         // model.addAttribute("info", userVO.getUsername() +"의 "+ userVO.getUserAuth()+ "님");      //유저 아이디
         return "home";
     }

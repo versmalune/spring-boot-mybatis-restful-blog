@@ -14,7 +14,7 @@
     </select>
     <insert id="insertBoard" parameterType="com.example.demo2.model.dto.BoardDto" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO board (title, content, created_datetime, writer)
-        VALUES (#{title}, #{content}, NOW(), 'testuser')
+        VALUES (#{title}, #{content}, NOW(), #{writer})
 	</insert>
     <insert id="insertBoardFileList" parameterType="com.example.demo2.model.dto.BoardFileDto">
 			INSERT INTO files

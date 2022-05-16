@@ -2,7 +2,8 @@ package com.example.demo2.service;
 
 
 import com.example.demo2.mapper.UserMapper;
-import com.example.demo2.model.UserVO;
+import com.example.demo2.model.Account;
+import com.example.demo2.model.AccountAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,20 +16,20 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService implements UserDetailsService {
     private final UserMapper userMapper;
     @Transactional
-    public void joinUser(UserVO userVO){
+    public void joinUser(Account account){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        userVO.setUserPw(passwordEncoder.encode(userVO.getPassword()));
-        userVO.setUserAuth("USER");
-        userMapper.saveUser(userVO);
+        account.setUserPw(passwordEncoder.encode(account.getPassword()));
+        account.setUserAuth("USER");
+        userMapper.saveUser(account);
     }
     @Override
-    public UserVO loadUserByUsername(String userName) throws UsernameNotFoundException {
-        UserVO userVO = userMapper.getUserAccount(userName);
-        System.out.println(userVO);
-        System.out.println("here" + userName);
-        if (userVO == null) {
+    public AccountAdapter loadUserByUsername(String userName) throws UsernameNotFoundException {
+        Account account = userMapper.getUserAccount(userName);
+        System.out.println(account);
+        System.out.println("here: " + userName);
+        if (account == null) {
             throw new UsernameNotFoundException("User Not Authorized");
         }
-        return userVO;
+        return new AccountAdapter(account);
     }
 }

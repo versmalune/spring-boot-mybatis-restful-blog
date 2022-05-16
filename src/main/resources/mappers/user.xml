@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0/EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.demo2.mapper.UserMapper">
-    <insert id="saveUser" parameterType="com.example.demo2.model.UserVO">
+    <insert id="saveUser" parameterType="com.example.demo2.model.Account">
         INSERT INTO users (user_name, user_pw, user_auth)
         VALUES (#{userName}, #{userPw}, #{userAuth})
     </insert>
-    <select id="getUserAccount" parameterType="String" resultType="com.example.demo2.model.UserVO">
+    <select id="getUserAccount" parameterType="String" resultType="com.example.demo2.model.Account">
             SELECT * FROM users
             WHERE user_name = #{userName}
     </select>

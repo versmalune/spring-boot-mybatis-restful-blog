@@ -24,10 +24,10 @@
         </tr>
         <tr>
           <th scope="row">제목</th>
-          <td colspan="3" id="title" name="title" class="title" th:text="${board.title}"/></td>
+          <td th:align="left" colspan="3" id="title" name="title" class="title" th:text="${board.title}"/></td>
         </tr>
         <tr>
-          <td colspan="4" class="view_text" th:utext="${board.content}">
+          <td align="left" colspan="4" class="view_text" th:utext="${board.content}">
             <!--
             <textarea title="content" id="content" name="content" th:utext="${board.content}"></textarea> <-->
           </td>
