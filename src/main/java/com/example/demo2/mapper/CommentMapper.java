@@ -1,5 +1,6 @@
 package com.example.demo2.mapper;
 
+import com.example.demo2.model.Account;
 import com.example.demo2.model.dto.CommentDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;

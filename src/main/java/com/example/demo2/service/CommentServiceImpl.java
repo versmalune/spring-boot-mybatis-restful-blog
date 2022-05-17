@@ -1,6 +1,7 @@
 package com.example.demo2.service;
 
 import com.example.demo2.mapper.CommentMapper;
+import com.example.demo2.model.Account;
 import com.example.demo2.model.dto.CommentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

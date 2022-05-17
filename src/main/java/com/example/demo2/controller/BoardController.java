@@ -2,8 +2,11 @@ package com.example.demo2.controller;
 
 import com.example.demo2.common.CurrentUser;
 import com.example.demo2.model.Account;
+import com.example.demo2.model.AccountAdapter;
 import com.example.demo2.model.dto.BoardDto;
+import com.example.demo2.model.dto.CommentDto;
 import com.example.demo2.service.BoardService;
+import com.example.demo2.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +22,7 @@ import java.util.List;
 public class BoardController {
     @Autowired
     private BoardService boardService;
+    private AccountAdapter accountAdapter;
 
     @GetMapping("")
     public ModelAndView boardList(){
@@ -39,10 +43,11 @@ public class BoardController {
     }
     @GetMapping("/{id}")
     @ResponseBody
-    public ModelAndView openBoardDetail(@PathVariable("id") Long id){
+    public ModelAndView openBoardDetail(@PathVariable("id") Long id, @CurrentUser Account account){
         ModelAndView mv = new ModelAndView("boardDetail");
         BoardDto board = boardService.selectBoardDetail(id);
         mv.addObject("board", board);
+        //mv.addObject("account", account);
         return mv;
     }
     @PutMapping("/{id}")

@@ -89,9 +89,7 @@
         $("input:hidden[name=_method]").val("delete");
         var frm = $("#frm")[0];
         frm.action = "/board/"+$("input:hidden[name=id]").val();
-        console.log("=====here1=====")
         frm.submit();
-        console.log("=====here2=====")
       });
     })
 
@@ -111,7 +109,7 @@
           var a ='';
           $.each(data, function(key, value){
             a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-            a += '<div class="commentContent'+value.id+'"> <p> '+ value.comContent;
+            a += '<div class="commentContent'+value.id+'"> <p> ' + value.comWriter + ' </p> <p> '+ value.comContent;
             a += '<button class="btn-com2" style="float:right" onclick="commentDelete('+value.id+');"> DELETE </button>';
             a += '<button class="btn-com2" style="float:right" onclick="commentUpdate('+value.id+',\''+value.comContent+'\');"> EDIT </button> </p> </div>';
             a += '</div></div>'
@@ -128,7 +126,8 @@
         data : insertData,
         success : function(){
             commentList();
-            $('[name=comContent]').val('');
+            $('[name=comContent]').val('')
+            $('[name=comWriter]').val('');
         }
       });
     }

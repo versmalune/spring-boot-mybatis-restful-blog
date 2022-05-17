@@ -1,5 +1,7 @@
 package com.example.demo2.controller;
 
+import com.example.demo2.common.CurrentUser;
+import com.example.demo2.model.Account;
 import com.example.demo2.model.dto.CommentDto;
 import com.example.demo2.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,19 +21,15 @@ public class CommentController {
     @GetMapping("/list")
     @ResponseBody
     public List<CommentDto> commentList(@RequestParam Long bid){
-        log.info("==========in list=========");
-
-        System.out.println("commentList: "+bid);
         return commentService.commentListService(bid);
     }
     @PostMapping ("/new")
     @ResponseBody
-    public void commentInsert(@RequestParam Long bid, @RequestParam String comContent){
-        log.info("==========in new=========");
+    public void commentInsert(@RequestParam Long bid, @CurrentUser Account account, @RequestParam String comContent){
         CommentDto comment = new CommentDto();
         comment.setBid(bid);
         comment.setComContent(comContent);
-        comment.setComWriter("TESTUSER");
+        comment.setComWriter(account.getUsername());
         commentService.insertCommentService(comment);
     }
     @PutMapping("/{id}")
