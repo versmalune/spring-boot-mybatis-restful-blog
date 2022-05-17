@@ -86,10 +86,15 @@
       });
 
       $("#delete").click(function(){
-        $("input:hidden[name=_method]").val("delete");
-        var frm = $("#frm")[0];
-        frm.action = "/board/"+$("input:hidden[name=id]").val();
-        frm.submit();
+        if(confirm('Are you sure you want to delete this post?')) {
+          $("input:hidden[name=_method]").val("delete");
+          var frm = $("#frm")[0];
+          frm.action = "/board/" + $("input:hidden[name=id]").val();
+          frm.submit();
+        } else {
+          return false;
+        }
+
       });
     })
 
