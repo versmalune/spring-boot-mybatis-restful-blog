@@ -1,5 +1,6 @@
 package com.example.demo2.common;
 
+import com.example.demo2.model.Account;
 import com.example.demo2.model.dto.BoardFileDto;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Component
 public class FileUtils {
-    public List<BoardFileDto> parseFileInfo(Long bid, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+    public List<BoardFileDto> parseFileInfo(@CurrentUser Account account, Long bid, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         if (ObjectUtils.isEmpty(multipartHttpServletRequest)) {
             return null;
         }
@@ -61,6 +62,7 @@ public class FileUtils {
                     boardFile.setFileSize(multipartFile.getSize());
                     boardFile.setOriginalFileName(multipartFile.getOriginalFilename());
                     boardFile.setStoredFilePath(path + "/" + newFileName);
+                    boardFile.setCreatorId(account.getUsername());
                     fileList.add(boardFile);
 
                     file = new File(path + "/" + newFileName);

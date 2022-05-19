@@ -27,7 +27,7 @@ public class BoardServiceImpl implements BoardService {
         board.setContent(board.getContent());
         board.setWriter(account.getUsername());
         boardMapper.insertBoard(board);
-        List<BoardFileDto> list = fileUtils.parseFileInfo(board.getId(), multipartHttpServletRequest);
+        List<BoardFileDto> list = fileUtils.parseFileInfo(account, board.getId(), multipartHttpServletRequest);
         if (CollectionUtils.isEmpty(list) == false) {
             boardMapper.insertBoardFileList(list);
         }
