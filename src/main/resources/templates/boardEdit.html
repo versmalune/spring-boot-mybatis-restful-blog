@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/head" :: head></th:block>
+<body>
+
+<div class="container">
+    <th:block th:replace="fragments/header :: header"></th:block>
+    <h3><a href="/board">BOARD 1</a></h3>
+    <form id="frm" method="post">
+        <table class="board_detail">
+            <tbody>
+            <tr>
+                <th scope="row">글 번호</th>
+                <td th:text="${board.getId}"></td>
+                <th scope="row">조회수</th>
+                <td th:text="${board.viewCnt}"></td>
+            </tr>
+            <tr>
+                <th scope="row">작성자</th>
+                <td th:text="${board.writer}"></td>
+                <th scope="row">작성일시</th>
+                <td th:text="${#temporals.format(board.createdDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+            <tr>
+                <th scope="row">제목</th>
+                <td th:align="left" colspan="3" id="title" name="title" class="title" th:text="${board.title}"/></td>
+            </tr>
+            <tr>
+                <td colspan="4" class="view_text" >
+                    <textarea id="summernote" name="content" th:utext="${board.content}"></textarea>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <input type="hidden" name="id" th:value="${board.getId}">
+        <input type="hidden" id="method" name="_method" />
+    </form>
+
+    <div class="container">
+        <a th:each="list : ${board.fileList}" th:text="|${list.originalFileName}(${list.fileSize} kb)|"></a>
+    </div>
+
+    <div class="btn-detail">
+        <button class="btn-com2" id="list">LIST</button>
+        <button class="btn-com2" id="save">SAVE</button>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $('#summernote').summernote({
+            tabsize: 2,
+            height: 200
+        });
+
+
+        $("#list").click(function(){
+            if(confirm('Are you sure you want to go back to board?')){
+                location.href = "/board";
+            } else {
+                return false;
+            }
+        });
+
+        $("#save").click(function(){
+            if(confirm('Are you sure you want to save this post?')) {
+                $("input:hidden[name=_method]").val("put");
+                var frm = $("#frm")[0];
+                frm.action = "/board/" + $("input:hidden[name=id]").val();
+                frm.submit();
+            } else {
+                return false;
+            }
+        });
+    });
+</script>
+
+
+</body>
+</html>

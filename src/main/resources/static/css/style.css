@@ -47,6 +47,7 @@ caption {display:none; width:0; height:0; margin-top:-1px; overflow:hidden; visi
 .board_write tbody {width: 80%; border-top:2px solid #252525; border-bottom:1px solid #ccc; border-collapse:collapse;}
 .board_write tbody td {padding: 0px 50px 0px 50px; border-bottom: 1px solid #ccc; vertical-align: middle; text-align: center}
 .board_write tbody td textarea {width:100%; text-align: left;}
+.note-editing-area {text-align: left;}
 .board_write tbody tr {padding-bottom: 10px; padding-top: 10px;}
 .board_write tbody td input {width:100%; padding-top: 10px; padding-bottom: 10px;}
 .files {padding: 0px 50px 0px 50px;}
@@ -57,11 +58,22 @@ caption {display:none; width:0; height:0; margin-top:-1px; overflow:hidden; visi
 .btn {margin:5px; padding:5px 11px; color:#fff !important; display:inline-block; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
 .btn-write {position:absolute; z-index:9; margin:5px; padding:5px 11px; color:#fff !important; align-items: center; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
 .btn-detail {align: right; margin-top: 10px; float: right;}
-.comment-group {position: relative}
+.comment-group {position: relative;}
 .btn-com {position: absolute; padding:5px 11px; right:3px; bottom:3px; color:#fff !important; display:inline-block; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
 .btn-com2 {margin: 0px 5px 0px 0px; padding:3px 11px; color:#fff !important; display:inline-block; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
 .btn:hover {background: #6b9ab8;}
 .btn-save {padding:5px 11px; right:3px; bottom:3px; color:#fff !important; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
+
+.summernote
+.dropdown-menu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
 
 .file_list a {display:inherit !important;}
 

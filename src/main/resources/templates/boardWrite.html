@@ -13,7 +13,7 @@
         <td><input type="text" id="title" name="title" placeholder="TITLE"></td>
       </tr>
       <tr>
-        <td colspan="2">
+        <td colspan="2" class="summernote">
           <textarea id="summernote" name="content"></textarea>
         </td>
       </tr>
@@ -32,6 +32,8 @@
       tabsize: 2,
       height: 200
     });
+    $('[data-toggle=tooltip]').tooltip();
+    $('.dropdown-toggle').dropdown();
   });
 </script>
 </body>

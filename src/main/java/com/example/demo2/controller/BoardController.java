@@ -35,6 +35,12 @@ public class BoardController {
     public String boardWrite(){
         return "/boardWrite";
     }
+    @GetMapping("/edit/{id}")
+    public ModelAndView boardEdit(@PathVariable("id") Long id) {
+        ModelAndView mv = new ModelAndView("boardEdit");
+        BoardDto board = boardService.selectBoardDetail(id);
+        mv.addObject("board", board);
+        return mv;}
     @PostMapping("/")
     public String insertBoard(@ModelAttribute BoardDto board,
                               @CurrentUser Account account, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
@@ -43,15 +49,15 @@ public class BoardController {
     }
     @GetMapping("/{id}")
     @ResponseBody
-    public ModelAndView openBoardDetail(@PathVariable("id") Long id, @CurrentUser Account account){
+    public ModelAndView openBoardDetail(@PathVariable("id") Long id){
         ModelAndView mv = new ModelAndView("boardDetail");
         BoardDto board = boardService.selectBoardDetail(id);
         mv.addObject("board", board);
-        //mv.addObject("account", account);
         return mv;
     }
     @PutMapping("/{id}")
-    public String updateBoard(@RequestBody BoardDto board){
+    public String updateBoard(BoardDto board){
+        log.info("=========in edit=======");
         boardService.updateBoard(board);
         return "redirect:/board";
     }
