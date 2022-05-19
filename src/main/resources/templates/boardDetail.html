@@ -78,14 +78,6 @@
         location.href = "/board/edit/" + id;
       });
 
-
-      // $("#edit").on("click", function(){
-      //   $("input:hidden[name=_method]").val("put");
-      //   var frm = $("#frm")[0];
-      //   frm.action = "/board/"+$("input:hidden[name=id]").val();
-      //   frm.submit();
-      // });
-
       $("#delete").click(function(){
         if(confirm('Are you sure you want to delete this post?')) {
           $("input:hidden[name=_method]").val("delete");

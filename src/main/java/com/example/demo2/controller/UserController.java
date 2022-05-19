@@ -36,7 +36,7 @@ public class UserController {
         userService.joinUser(account);
         return "redirect:/login";
     }
-    @GetMapping("/userAccess")
+    @GetMapping("/home")
     public String userAccess(Model model, Authentication authentication) {
         // Account account = (Account) authentication.getPrincipal();
         // model.addAttribute("info", userVO.getUsername() +"의 "+ userVO.getUserAuth()+ "님");      //유저 아이디
