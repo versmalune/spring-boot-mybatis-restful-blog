@@ -2,9 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <th:block th:replace="fragments/head" :: head></th:block>
 <body>
-<form id="signup" name= "signup" method="post" action="/signUp">
-    <div class="container">
-        <h1>SIGN UP</h1>
+
+    <div class="container d-flex align-items-center justify-content-center" style="height: 100vh;">
+        <form id="signup" name= "signup" method="post" action="/signUp">
+        <h1 style="text-align: center;">SIGN UP</h1>
         <div class="mb-3">
             <label for="username">ID</label>
             <input type="text" class="form-control" id="username" name="userName" placeholder="사용자 아이디">
@@ -17,9 +18,13 @@
             <label for="checkPassword">PASSWORD CHECK</label>
             <input type="password" class="form-control" id="checkPassword" name="password" placeholder="사용자 비밀번호 확인">
         </div>
-        <button type="button" class="btn btn-primary" onclick="signUpSubmit(); return false;">SIGN UP</button>
+            <div class="auth-buttons" style="text-align: center;">
+                <button type="button" class="btn btn-primary" onClick="location.href='login'">LOGIN</button>
+                <button type="button" class="btn btn-primary" onclick="signUpSubmit(); return false;">SIGN UP</button>
+            </div>
+        </form>
     </div>
-</form>
+
 
 <script type="text/javascript">
     $(document).ready(function(){
