@@ -3,9 +3,9 @@
 
 <mapper namespace="com.example.demo2.mapper.BoardMapper">
     <select id="selectBoardList" resultType="com.example.demo2.model.dto.BoardDto">
-			SELECT id, title, view_cnt, created_datetime
-		    FROM board
-		    ORDER BY id DESC
+		SELECT id, title, view_cnt, created_datetime
+	    FROM board
+	    ORDER BY id DESC
     </select>
     <select id="selectBoardFileList" parameterType="Long" resultType="com.example.demo2.model.dto.BoardFileDto">
         SELECT id, bid, original_file_name, FORMAT(ROUND(file_size / 1024), 0) AS file_size
@@ -17,9 +17,9 @@
         VALUES (#{title}, #{content}, NOW(), #{writer})
 	</insert>
     <insert id="insertBoardFileList" parameterType="com.example.demo2.model.dto.BoardFileDto">
-			INSERT INTO files
+		INSERT INTO files
 			(bid, original_file_name, stored_file_path, file_size, creator_id)
-			VALUES
+		VALUES
         <foreach collection="list" item="item" separator=",">
             (
             #{item.bid},
