@@ -10,7 +10,7 @@ html, body, div, a, form, table, caption, thead, tbody, tr, th, td, submit {
 }
 body { font-size:0.875em; line-height:1.5; color:#666; -webkit-text-size-adjust:none; min-width:320px; height: 100vh;}
 /*h1, h2 {display: inline-block; font-size: 3em;}*/
-h3 {font-size: 1em; padding-left: 10px; padding-top: 10px;}
+h3 {font-size: 1em; padding-left: 10px; padding-top: 20px;}
 p{margin:0; padding:0;}
 a{text-decoration: none; outline: none;}
 a:link, a:visited {text-decoration:none; color: #656565;}
@@ -36,7 +36,7 @@ caption {display:none; width:0; height:0; margin-top:-1px; overflow:hidden; visi
 .board_list tbody td.title {padding-left:20px; text-align: left;}
 .board_list tbody td a {display:inline-block}
 
-.board_detail {width:100%; border-top:2px solid #252525; border-bottom:1px solid #ccc; border-collapse:collapse;}
+.board_detail {width:100%; table-layout: fixed; border-top:2px solid #252525; border-bottom:1px solid #ccc; border-collapse:collapse;}
 .board_detail tbody input {width:100%;}
 .board_detail tbody th {text-align:center; background:#f7f7f7; color:#3b3a3a; vertical-align:middle;}
 .board_detail tbody th {padding:10px 15px; border-bottom:1px solid #ccc;}
@@ -45,25 +45,25 @@ caption {display:none; width:0; height:0; margin-top:-1px; overflow:hidden; visi
 .board_detail tbody textarea {width:100%; min-height:170px}
 .board_detail td.title {text-align: left; padding-right:130px; padding-left:20px;}
 
+.board_write {width: 100%;}
 .board_write tbody {width: 80%; border-top:2px solid #252525; border-bottom:1px solid #ccc; border-collapse:collapse;}
-.board_write tbody td {padding: 0px 50px 0px 50px; border-bottom: 1px solid #ccc; vertical-align: middle; text-align: center}
+.board_write tbody td {border-bottom: 1px solid #ccc; vertical-align: middle; text-align: center}
 .board_write tbody td textarea {width:100%; text-align: left;}
 .note-editing-area {text-align: left;}
 .board_write tbody tr {padding-bottom: 10px; padding-top: 10px;}
 .board_write tbody td input {width:100%; padding-top: 10px; padding-bottom: 10px;}
-.files {padding: 0px 50px 0px 50px;}
 
 .container a {display:inherit !important;}
 .note-btn-group {background-color: #7D7F82}
 .btn-under-group {max-width: 1024px; margin:0 auto; color:#fff !important;}
 .btn {margin:5px; padding:5px 11px; color:#fff !important; display:inline-block; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
 .btn-write {position:absolute; z-index:9; margin:5px; padding:5px 11px; color:#fff !important; align-items: center; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
-.btn-detail {align: right; margin-top: 10px; float: right;}
+.btn-detail {width: 100%; align: right; margin-top: 10px; float: right;}
 .comment-group {position: relative;}
 .btn-com {position: absolute; padding:5px 11px; right:3px; bottom:3px; color:#fff !important; display:inline-block; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
 .btn-com2 {margin: 0px 5px 0px 0px; padding:3px 11px; color:#fff !important; display:inline-block; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
 .btn:hover {background: #6b9ab8;}
-.btn-save {padding:5px 11px; right:3px; bottom:3px; color:#fff !important; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
+.btn-save {float: right; padding:5px 11px; right:3px; bottom:3px; color:#fff !important; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
 
 .summernote
 .dropdown-menu > li > a {

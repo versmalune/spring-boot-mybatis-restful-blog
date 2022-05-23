@@ -11,19 +11,19 @@
       <table class="board_detail">
         <tbody>
         <tr>
-          <th scope="row">글 번호</th>
+          <th scope="row">No.</th>
           <td th:text="${board.getId}"></td>
-          <th scope="row">조회수</th>
+          <th scope="row">Hits</th>
           <td th:text="${board.viewCnt}"></td>
         </tr>
         <tr>
-          <th scope="row">작성자</th>
+          <th scope="row">Writer</th>
           <td th:text="${board.writer}"></td>
-          <th scope="row">작성일시</th>
+          <th scope="row">Time</th>
           <td th:text="${#temporals.format(board.createdDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
         </tr>
         <tr>
-          <th scope="row">제목</th>
+          <th scope="row">Title</th>
           <td th:align="left" colspan="3" id="title" name="title" class="title" th:text="${board.title}"/></td>
         </tr>
         <tr>
@@ -41,9 +41,9 @@
     </div>
 
     <div class="btn-detail">
-        <button class="btn-com2" id="list">LIST</button>
-        <button class="btn-com2" id="edit">EDIT</button>
-        <button class="btn-com2" id="delete" name="delete">DELETE</button>
+      <button class="btn-com2 float-end" id="delete" name="delete">DELETE</button>
+      <button class="btn-com2 float-end" id="edit">EDIT</button>
+      <button class="btn-com2 float-end" id="list">LIST</button>
     </div>
   </div>
 

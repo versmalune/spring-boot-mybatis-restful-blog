@@ -5,7 +5,7 @@
 
   <div class="container">
     <th:block th:replace="fragments/header :: header"></th:block>
-    <h3>게시판 글 등록</h3>
+    <h3>WRITE</h3>
     <form id="boardform" name="boardform" method="post" action="/board/" enctype="multipart/form-data">
     <table class="board_write">
       <tr>
@@ -18,11 +18,10 @@
         </td>
       </tr>
     </table>
-      <input type="file" class="files" id="files" name="files" multiple="multiple">
-      <div class="btn-detail">
-        <input type="submit" id="submit" value="SAVE" class="btn-save">
-      </div>
+      <input type="file" class="files" id="files" name="files" multiple="multiple" style="margin-top: 10px;">
+      <input type="submit" id="submit" value="SAVE" class="btn-save" style="float: right; margin-top: 30px;">
     </form>
+
   </div>
 
 <script type="text/javascript">
