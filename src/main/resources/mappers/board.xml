@@ -2,10 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0/EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.demo2.mapper.BoardMapper">
-    <select id="selectBoardList" resultType="com.example.demo2.model.dto.BoardDto">
+    <select id="selectBoardList" parameterType="BoardDto" resultType="com.example.demo2.model.dto.BoardDto">
 		SELECT id, title, view_cnt, created_datetime
 	    FROM board
 	    ORDER BY id DESC
+        LIMIT #{paginationInfo.firstRecordIndex}, #{recordsPerPage}
+    </select>
+    <select id="selectBoardTotalCount" parameterType="BoardDto" resultType="int">
+        SELECT COUNT(*)
+        FROM board
     </select>
     <select id="selectBoardFileList" parameterType="Long" resultType="com.example.demo2.model.dto.BoardFileDto">
         SELECT id, bid, original_file_name, FORMAT(ROUND(file_size / 1024), 0) AS file_size

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block th:replace="fragments/head" :: head></th:block>
 <body>
 <div class="container">
@@ -28,7 +28,23 @@
     </tr>
     </tbody>
   </table>
-  <a href="board/new" class="btn-write">글 쓰기</a>
+  <div class="btn_wrap text-right" style="float: right;">
+    <a href="board/new" class="btn btn-primary waves-effect waves-light">WRITE</a>
+  </div>
+  <th:block layout:fragment="paging">
+    <nav th:replace="fragments/pagination :: pagination"></nav>
+  </th:block>
 </div>
+
+  <th:block layout:fragment="script">
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+      function movePage(uri, queryString) {
+        location.href = uri + queryString;
+      }
+      /*]]>*/
+    </script>
+  </th:block>
+
 </body>
 </html>

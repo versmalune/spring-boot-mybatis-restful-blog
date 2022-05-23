@@ -1,5 +1,6 @@
 package com.example.demo2.controller;
 
+import com.example.demo2.common.Criteria;
 import com.example.demo2.common.CurrentUser;
 import com.example.demo2.model.Account;
 import com.example.demo2.model.AccountAdapter;
@@ -25,9 +26,9 @@ public class BoardController {
     private AccountAdapter accountAdapter;
 
     @GetMapping("")
-    public ModelAndView boardList(){
+    public ModelAndView boardList(@ModelAttribute("board") BoardDto board){
         ModelAndView mv = new ModelAndView("boardList");
-        List<BoardDto> list = boardService.selectBoardList();
+        List<BoardDto> list = boardService.selectBoardList(board);
         mv.addObject("list", list);
         return mv;
     }
