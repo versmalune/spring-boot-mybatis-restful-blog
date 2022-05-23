@@ -44,6 +44,7 @@ caption {display:none; width:0; height:0; margin-top:-1px; overflow:hidden; visi
 .board_detail tbody td.view_text {text-align: left; padding: 20px; font-size: 150%;}
 .board_detail tbody textarea {width:100%; min-height:170px}
 .board_detail td.title {text-align: left; padding-right:130px; padding-left:20px;}
+tr > a {display: block;}
 
 .board_write {width: 100%;}
 .board_write tbody {width: 80%; border-top:2px solid #252525; border-bottom:1px solid #ccc; border-collapse:collapse;}
@@ -56,7 +57,7 @@ caption {display:none; width:0; height:0; margin-top:-1px; overflow:hidden; visi
 .container a {display:inherit !important;}
 .note-btn-group {background-color: #7D7F82}
 .btn-under-group {max-width: 1024px; margin:0 auto; color:#fff !important;}
-.btn {margin:5px; padding:5px 11px; color:#fff !important; display:inline-block; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
+.btn {margin:5px; padding:5px 11px; display:inline-block; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
 .btn-write {position:absolute; z-index:9; margin:5px; padding:5px 11px; color:#fff !important; align-items: center; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
 .btn-detail {width: 100%; align: right; margin-top: 10px; float: right;}
 .comment-group {position: relative;}
@@ -64,6 +65,7 @@ caption {display:none; width:0; height:0; margin-top:-1px; overflow:hidden; visi
 .btn-com2 {margin: 0px 5px 0px 0px; padding:3px 11px; color:#fff !important; display:inline-block; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
 .btn:hover {background: #6b9ab8;}
 .btn-save {float: right; padding:5px 11px; right:3px; bottom:3px; color:#fff !important; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
+.btn-primary {color: #fff !important;}
 
 .summernote
 .dropdown-menu > li > a {
@@ -80,6 +82,5 @@ caption {display:none; width:0; height:0; margin-top:-1px; overflow:hidden; visi
 
 * { margin:0; padding:0; font-family: 'ZCOOL QingKe HuangYou', cursive; box-sizing: border-box; }
 
-.fn-font{ font-family: 'Noto Sans KR', sans-serif; }
 .comment-insert {padding: 10px 10px 30px 1px; width: 100%; margin-top: 20px;}
 .commentContent{}

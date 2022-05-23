@@ -5,13 +5,21 @@
 <div class="container">
   <th:block th:replace="fragments/header :: header"></th:block>
   <h3><a href="/board">BOARD 1</a></h3>
+  <div class="input-group">
+    <input class="form-control border-end-0 border rounded-pill" type="text" placeholder="Search..." id="example-search-input">
+    <span class="input-group-append">
+      <button class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="button">
+        <i class="fa fa-search"></i>
+      </button>
+    </span>
+  </div>
   <table class="board_list">
     <thead>
     <tr>
-      <th scope="col">글번호</th>
-      <th scope="col" class="title">제목</th>
-      <th scope="col">게시일시</th>
-      <th scope="col">조회수</th>
+      <th scope="col">No.</th>
+      <th scope="col" class="title">Title</th>
+      <th scope="col">Time</th>
+      <th scope="col">Hits</th>
     </tr>
     </thead>
     <tbody>
@@ -29,7 +37,7 @@
     </tbody>
   </table>
   <div class="btn_wrap text-right" style="float: right;">
-    <a href="board/new" class="btn btn-primary waves-effect waves-light">WRITE</a>
+    <a href="board/new" class="btn-save waves-effect waves-light">WRITE</a>
   </div>
   <th:block layout:fragment="paging">
     <nav th:replace="fragments/pagination :: pagination"></nav>
