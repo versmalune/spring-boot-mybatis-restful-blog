@@ -57,7 +57,7 @@ tr > a {display: block;}
 .container a {display:inherit !important;}
 .note-btn-group {background-color: #7D7F82}
 .btn-under-group {max-width: 1024px; margin:0 auto; color:#fff !important;}
-.btn {margin:5px; padding:5px 11px; display:inline-block; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
+.btn {color: #fff !important; padding:5px 11px; display:inline-block; background-color:#7D7F82 !important; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
 .btn-write {position:absolute; z-index:9; margin:5px; padding:5px 11px; color:#fff !important; align-items: center; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
 .btn-detail {width: 100%; align: right; margin-top: 10px; float: right;}
 .comment-group {position: relative;}
@@ -66,7 +66,8 @@ tr > a {display: block;}
 .btn:hover {background: #6b9ab8;}
 .btn-save {float: right; padding:5px 11px; right:3px; bottom:3px; color:#fff !important; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
 .btn-primary {color: #fff !important;}
-
+.btn-outline-secondary {color: transparent !important;}
+.fa-search {color: #6c757d;}
 .summernote
 .dropdown-menu > li > a {
     display: block;
