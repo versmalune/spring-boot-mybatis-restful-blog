@@ -5,14 +5,59 @@
 <div class="container">
   <th:block th:replace="fragments/header :: header"></th:block>
   <h3><a href="/board">BOARD 1</a></h3>
-  <div class="input-group">
-    <input class="form-control border-end-0 border rounded-pill" type="text" placeholder="Search..." id="example-search-input">
-    <span class="input-group-append">
-      <button class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="button">
-        <i class="fa fa-search"></i>
-      </button>
-    </span>
+<!--  <div class="input-group">-->
+<!--    <form id="searchForm2" th:action="@{/board/}" th:onsubmit="return searchBoard(this)" method="get" role="form">-->
+<!--    <input class="form-control border-end-0 border rounded-pill" type="text" placeholder="Search..." id="searchKeyword" th:value="${board.searchKeyword}">-->
+<!--      <input type="hidden" name="currentPageNo" value="1" />-->
+<!--      <input type="hidden" name="recordsPerPage" th:value="${board.recordsPerPage}" />-->
+<!--      <input type="hidden" name="pageSize" th:value="${board.pageSize}" />-->
+<!--    <span class="input-group-append">-->
+<!--      <button type="button" class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" onclick="searchBoard(null)">-->
+<!--        <i class="fa fa-search"></i>-->
+<!--      </button>-->
+<!--    </span>-->
+<!--    </form>-->
+<!--  </div>-->
+
+
+  <div th:fragment="search" id="adv-search" class="input-group">
+    <input type="text" id="mainSearchKeyword" class="form-control" th:value="${board.searchKeyword}" placeholder="키워드를 입력해 주세요." />
+    <div class="input-group-btn">
+      <div class="btn-group" role="group">
+        <div class="dropdown dropdown-lg">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+          <div class="dropdown-menu dropdown-menu-right" role="menu">
+            <!--/* 검색 form */-->
+            <form id="searchForm" th:action="@{/board/list.do}" method="get" th:onsubmit="return searchBoard(this)" class="form-horizontal" role="form">
+              <!-- /* 현재 페이지 번호, 페이지당 출력할 데이터 개수, 페이지 하단에 출력할 페이지 개수 Hidden 파라미터 */ -->
+              <input type="hidden" name="currentPageNo" value="1" />
+              <input type="hidden" name="recordsPerPage" th:value="${board.recordsPerPage}" />
+              <input type="hidden" name="pageSize" th:value="${board.pageSize}" />
+
+              <div class="form-group">
+                <label for="">Search Type</label>
+                <select name="searchType" class="form-control">
+                  <option value="" th:selected="${#strings.isEmpty( board.searchType )}">전체</option>
+                  <option value="title" th:selected="${#strings.equals( board.searchType, 'title' )}">제목</option>
+                  <option value="content" th:selected="${#strings.equals( board.searchType, 'content' )}">내용</option>
+                  <option value="writer" th:selected="${#strings.equals( board.searchType, 'writer' )}">작성자</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <input type="text" name="searchKeyword" class="form-control" th:value="${board.searchKeyword}" />
+              </div>
+              <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            </form>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="searchBoard(null)"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </div>
+    </div>
   </div>
+
+
+
+
   <table class="board_list">
     <thead>
     <tr>
@@ -50,6 +95,29 @@
       function movePage(uri, queryString) {
         location.href = uri + queryString;
       }
+      function searchBoard(form) {
+        /*[- 드롭다운이 아닌 메인 검색 키워드로 검색했을 때 -]*/
+        if (form.val() == null || form.val() == "") {
+          var searchKeyword = document.getElementById("mainSearchKeyword");
+          if (searchKeyword.value == null) {
+            alert("키워드를 입력해 주세요.");
+            searchKeyword.focus();
+            return false;
+          }
+
+          form = document.getElementById("searchForm");
+          form.searchKeyword.value = searchKeyword.value;
+          form.submit();
+        }
+
+        if (form.searchKeyword.value) == null || (form.searchKeyword.value) == "") {
+          alert("키워드를 입력해 주세요.");
+          form.searchKeyword.focus();
+          return false;
+        }
+      }
+      /*[- end of function -]*/
+
       /*]]>*/
     </script>
   </th:block>
