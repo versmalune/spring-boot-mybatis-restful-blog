@@ -28,14 +28,13 @@
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
           <div class="dropdown-menu dropdown-menu-right" role="menu">
             <!--/* 검색 form */-->
-            <form id="searchForm" th:action="@{/board/list.do}" method="get" th:onsubmit="return searchBoard(this)" class="form-horizontal" role="form">
+            <form id="searchForm" th:action="@{/board}" method="get" th:onsubmit="return searchBoard(this)" class="form-horizontal" role="form">
               <!-- /* 현재 페이지 번호, 페이지당 출력할 데이터 개수, 페이지 하단에 출력할 페이지 개수 Hidden 파라미터 */ -->
               <input type="hidden" name="currentPageNo" value="1" />
               <input type="hidden" name="recordsPerPage" th:value="${board.recordsPerPage}" />
               <input type="hidden" name="pageSize" th:value="${board.pageSize}" />
 
               <div class="form-group">
-                <label for="">Search Type</label>
                 <select name="searchType" class="form-control">
                   <option value="" th:selected="${#strings.isEmpty( board.searchType )}">전체</option>
                   <option value="title" th:selected="${#strings.equals( board.searchType, 'title' )}">제목</option>
@@ -97,7 +96,7 @@
       }
       function searchBoard(form) {
         /*[- 드롭다운이 아닌 메인 검색 키워드로 검색했을 때 -]*/
-        if (form.val() == null || form.val() == "") {
+        if (form == null || form == "") {
           var searchKeyword = document.getElementById("mainSearchKeyword");
           if (searchKeyword.value == null) {
             alert("키워드를 입력해 주세요.");
@@ -110,7 +109,7 @@
           form.submit();
         }
 
-        if (form.searchKeyword.value) == null || (form.searchKeyword.value) == "") {
+        if (form.searchKeyword.value.val() == null || (form.searchKeyword.value.val()) == "") {
           alert("키워드를 입력해 주세요.");
           form.searchKeyword.focus();
           return false;
