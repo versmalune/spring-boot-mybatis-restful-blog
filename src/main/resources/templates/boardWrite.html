@@ -9,7 +9,7 @@
     <form id="boardform" name="boardform" method="post" action="/board/" enctype="multipart/form-data">
     <table class="board_write">
       <tr>
-        <td>제목</td>
+        <td>Title</td>
         <td><input type="text" id="title" name="title" placeholder="TITLE"></td>
       </tr>
       <tr>
@@ -34,8 +34,17 @@
       tabsize: 2,
       height: 200
     });
-    $('[data-toggle=tooltip]').tooltip();
-    $('.dropdown-toggle').dropdown();
+
+    var btns = document.querySelectorAll('button');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].setAttribute('data-bs-toggle', 'dropdown');
+      btns[i].removeAttribute('data-toggle');
+    }
+    
+    var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+    var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+      return new bootstrap.Dropdown(dropdownToggleEl)
+    })
   });
 </script>
 </body>

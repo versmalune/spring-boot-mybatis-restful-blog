@@ -5,31 +5,15 @@
 <div class="container">
   <th:block th:replace="fragments/header :: header"></th:block>
   <h3><a href="/board">BOARD 1</a></h3>
-<!--  <div class="input-group">-->
-<!--    <form id="searchForm2" th:action="@{/board/}" th:onsubmit="return searchBoard(this)" method="get" role="form">-->
-<!--    <input class="form-control border-end-0 border rounded-pill" type="text" placeholder="Search..." id="searchKeyword" th:value="${board.searchKeyword}">-->
-<!--      <input type="hidden" name="currentPageNo" value="1" />-->
-<!--      <input type="hidden" name="recordsPerPage" th:value="${board.recordsPerPage}" />-->
-<!--      <input type="hidden" name="pageSize" th:value="${board.pageSize}" />-->
-<!--    <span class="input-group-append">-->
-<!--      <button type="button" class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" onclick="searchBoard(null)">-->
-<!--        <i class="fa fa-search"></i>-->
-<!--      </button>-->
-<!--    </span>-->
-<!--    </form>-->
-<!--  </div>-->
-
 
   <div th:fragment="search" id="adv-search" class="input-group">
-    <input type="text" id="mainSearchKeyword" class="form-control" th:value="${board.searchKeyword}" placeholder="키워드를 입력해 주세요." />
+    <input type="text" id="mainSearchKeyword" class="form-control border-end-0 border rounded-pill" th:value="${board.searchKeyword}" placeholder="Search..." />
     <div class="input-group-btn">
       <div class="btn-group" role="group">
         <div class="dropdown dropdown-lg">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+          <button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="border: 10px;"><span class="caret"></span></button>
           <div class="dropdown-menu dropdown-menu-right" role="menu">
-            <!--/* 검색 form */-->
             <form id="searchForm" th:action="@{/board}" method="get" th:onsubmit="return searchBoard(this)" class="form-horizontal" role="form">
-              <!-- /* 현재 페이지 번호, 페이지당 출력할 데이터 개수, 페이지 하단에 출력할 페이지 개수 Hidden 파라미터 */ -->
               <input type="hidden" name="currentPageNo" value="1" />
               <input type="hidden" name="recordsPerPage" th:value="${board.recordsPerPage}" />
               <input type="hidden" name="pageSize" th:value="${board.pageSize}" />
@@ -45,16 +29,14 @@
               <div class="form-group">
                 <input type="text" name="searchKeyword" class="form-control" th:value="${board.searchKeyword}" />
               </div>
-              <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+              <button type="submit" class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3"><i class="fa fa-search"></i></button>
             </form>
           </div>
         </div>
-        <button type="button" class="btn btn-primary" onclick="searchBoard(null)"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        <button type="button" class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" onclick="searchBoard(null)"><i class="fa fa-search"></i></button>
       </div>
     </div>
   </div>
-
-
 
 
   <table class="board_list">
@@ -90,7 +72,9 @@
 
   <th:block layout:fragment="script">
     <script th:inline="javascript">
-      /*<![CDATA[*/
+      $(document).ready(function(){
+        $('.dropdown-toggle').dropdown()
+      });
       function movePage(uri, queryString) {
         location.href = uri + queryString;
       }
@@ -99,7 +83,7 @@
         if (form == null || form == "") {
           var searchKeyword = document.getElementById("mainSearchKeyword");
           if (searchKeyword.value == null) {
-            alert("키워드를 입력해 주세요.");
+            alert("Please input a keyword");
             searchKeyword.focus();
             return false;
           }
@@ -110,14 +94,16 @@
         }
 
         if (form.searchKeyword.value.val() == null || (form.searchKeyword.value.val()) == "") {
-          alert("키워드를 입력해 주세요.");
+          alert("Please input a keyword");
           form.searchKeyword.focus();
           return false;
         }
       }
-      /*[- end of function -]*/
+      var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+      var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+        return new bootstrap.Dropdown(dropdownToggleEl)
+      })
 
-      /*]]>*/
     </script>
   </th:block>
 
