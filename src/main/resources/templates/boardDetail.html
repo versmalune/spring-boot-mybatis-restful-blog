@@ -138,26 +138,30 @@
       $('.commentContent'+id).html(a);
     }
 
-    function commentUpdateProc(id){
-      var updateContent = $('[name=content_'+id+']').val();
-      $.ajax({
-        url : '/comment/'+id,
-        type : 'put',
-        data : {'comContent' : updateContent, 'id' : id},
-        success : function(){
-          commentList();
-        }
-      });
+    function commentUpdateProc(id) {
+      var updateContent = $('[name=content_' + id + ']').val();
+      if (confirm('Are you sure you want to edit this comment?')) {
+        $.ajax({
+          url: '/comment/' + id,
+          type: 'put',
+          data: {'comContent': updateContent, 'id': id},
+          success : function(){
+            commentList();
+          }
+        });
+      }
     }
 
-    function commentDelete(id){
-      $.ajax({
-        url : '/comment/'+id,
-        type : 'delete',
-        success : function(){
-          commentList();
-        }
-      });
+    function commentDelete(id) {
+      if (confirm('Are you sure you want to delete this comment?')) {
+        $.ajax({
+          url: '/comment/' + id,
+          type: 'delete',
+          success: function () {
+            commentList();
+          }
+        });
+      }
     }
 
     $(document).ready(function(){
