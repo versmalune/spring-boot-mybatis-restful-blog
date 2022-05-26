@@ -13,12 +13,12 @@
         <div class="dropdown dropdown-lg">
           <button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="border: 10px;"><span class="caret"></span></button>
           <div class="dropdown-menu dropdown-menu-right" role="menu">
-            <form id="searchForm" th:action="@{/board}" method="get" th:onsubmit="return searchBoard(this)" class="form-horizontal" role="form">
+            <form id="searchForm" th:action="@{/board}" method="get" th:onsubmit="return searchBoard(this)" class="form-horizontal" role="form" style="text-align: center;">
               <input type="hidden" name="currentPageNo" value="1" />
               <input type="hidden" name="recordsPerPage" th:value="${board.recordsPerPage}" />
               <input type="hidden" name="pageSize" th:value="${board.pageSize}" />
 
-              <div class="form-group">
+              <div class="form-group" style="width: 200px">
                 <select name="searchType" class="form-control">
                   <option value="" th:selected="${#strings.isEmpty( board.searchType )}">전체</option>
                   <option value="title" th:selected="${#strings.equals( board.searchType, 'title' )}">제목</option>
